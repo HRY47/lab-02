@@ -2,6 +2,7 @@ package com.example.listycity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> cityAdapter;
     ArrayList<String> dataList;
 
+    Integer selected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,23 +45,58 @@ public class MainActivity extends AppCompatActivity {
         Button addButton = findViewById(R.id.button);
         Button deleteButton = findViewById(R.id.button2);
         EditText input = findViewById(R.id.input);
+
+        Button checkBox = findViewById(R.id.checkBox2);
+
+        input.setVisibility(View.GONE);
+        checkBox.setVisibility(View.GONE);
+
+        cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedCity = dataList.get(position);
+                selected = position;
+
+            }
+        });
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newCity = input.getText().toString();
-                dataList.add(newCity);
-                cityAdapter.notifyDataSetChanged();
-                input.setText("");
+                input.setVisibility(View.VISIBLE);
+                checkBox.setVisibility(View.VISIBLE);
+                //String newCity = input.getText().toString();
+                //dataList.add(newCity);
+                //cityAdapter.notifyDataSetChanged();
+                //input.setText("");
             }
         });
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String City = input.getText().toString();
-                dataList.remove(City);
+                //input.setVisibility(View.VISIBLE);
+                //checkBox.setVisibility(View.VISIBLE);
+                //String City = input.getText().toString();
+                //dataList.remove(City);
+                dataList.remove(dataList.get(selected));
                 cityAdapter.notifyDataSetChanged();
                 input.setText("");
+            }
+        });
+
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                input.setVisibility(View.VISIBLE);
+                checkBox.setVisibility(View.VISIBLE);
+
+                String newCity = input.getText().toString();
+                dataList.add(newCity);
+                cityAdapter.notifyDataSetChanged();
+                input.setText("");
+                input.setVisibility(View.GONE);
+                checkBox.setVisibility(View.GONE);
             }
         });
     }

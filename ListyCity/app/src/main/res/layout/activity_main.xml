@@ -65,14 +65,22 @@
 
     <EditText
         android:id="@+id/input"
-        android:layout_width="399dp"
-        android:layout_height="66dp"
+        android:layout_width="313dp"
+        android:layout_height="59dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginBottom="30dp"
+        android:text="city name"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_list"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintVertical_bias="0.0"/>
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
